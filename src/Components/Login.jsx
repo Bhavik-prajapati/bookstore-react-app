@@ -4,11 +4,15 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import authService from "../services/authService";
 import { toast } from "react-toastify";
+import Cookies from 'js-cookie';
+
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
   const [email, setemail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email().required("email should not be empty"),
@@ -16,6 +20,7 @@ const Login = () => {
   });
 
   const handleSubmit = (values) => {
+
 
     const payload={
       email:values.email,
@@ -31,6 +36,8 @@ const Login = () => {
             position: toast.POSITION.TOP_RIGHT
         });
 
+        navigate("/home");
+        Cookies.set("auth_email",values.email);
         }
       }
     
@@ -64,15 +71,7 @@ const Login = () => {
         return (
           <Form>
             <div className="form-demo">
-              <h1
-                style={{
-                  marginLeft: "25%",
-                  marginBottom: "20px",
-                  marginTop: "10vh",
-                }}
-              >
-                Login
-              </h1>
+            <Typography style={{marginTop:"10vh",textAlign:"center",}} variant='h3'> Login</Typography>
               <TextField
                 label="email"
                 name="email"

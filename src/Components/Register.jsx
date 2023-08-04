@@ -1,11 +1,10 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Typography } from "@mui/material";
 import axios from 'axios';
 import { toast } from "react-toastify";
 import authService from "../services/authService";
-// import toast, { Toaster } from 'react-hot-toast';
 
 export const Register = () => {
 
@@ -16,7 +15,6 @@ export const Register = () => {
     roleid: "",
     password: "",
   };
-
   const validationSchema = Yup.object({
     name: Yup.string().required("Required").max(50),
     lname: Yup.string().required("Required").max(50),
@@ -24,9 +22,6 @@ export const Register = () => {
     roleid: Yup.string().required("Required").max(600),
     password: Yup.string().required("Required"),
   });
-
-
-
   const handleSubmit=(values)=>{
     console.log(values);
     const payload={
@@ -36,7 +31,6 @@ export const Register = () => {
       roleId:values.roleid,
       password:values.password
     }
-
     authService.Register(payload).then((response)=>{
     if(response){
       toast.success('Success Registeration !', {
@@ -50,36 +44,6 @@ export const Register = () => {
     });
     }
     );
-
-
-  /*   (values) => {
-      axios.post("https://book-e-sell-node-api.vercel.app/api/user",
-      {
-        firstName:values.name,
-        lastName:values.lname,
-        email:values.email,
-        roleId:values.roleid,
-        password:values.password
-      })
-      .then((response)=>{
-        if(response){
-            toast.success('Success Notification !', {
-                position: toast.POSITION.TOP_RIGHT
-            });
-        console.log(response)
-        }
-      }).catch((error)=>{
-
-        toast.error('something wrong ....', {
-            position: toast.POSITION.TOP_RIGHT
-        });
-       
-
-        console.log(error);
-      }) */
-
-
-
   }
 
   const formik = useFormik({
@@ -90,15 +54,7 @@ export const Register = () => {
   
   return (
     <form onSubmit={formik.handleSubmit}>
-      <h1
-        style={{
-          marginLeft: "25%",
-          marginBottom: "20px",
-          marginTop: "10vh",
-        }}
-      >
-        Register
-      </h1>
+      <Typography style={{marginTop:"10vh",textAlign:"center",}} variant='h3'> Register</Typography>
       <TextField
         id="name"
         name="name"

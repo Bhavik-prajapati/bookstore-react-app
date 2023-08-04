@@ -8,10 +8,33 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ThemeProvider } from '@emotion/react';
+import { createTheme } from '@mui/material';
 
 const App = () => {
+  const theme=createTheme({
+    components:{
+      MuiButton:{
+        styleOverrides:{
+          root:{
+            backgroundColor:"#ccc"
+          }
+        },
+      },
+      MuiAppBar:{
+        styleOverrides:{
+          root:{
+            backgroundColor:"#cf4b45"
+          }
+        }
+      }
+    }
+
+  });
+
   return (
     <>
+    <ThemeProvider theme={theme}>
       <BrowserRouter>
 
       <Navbar/>
@@ -19,6 +42,7 @@ const App = () => {
       <Routes>  
         <Route path="/" element=<Login/>/>
         <Route path="/register" element=<Register/>/>
+        <Route path="/home" element=<Homepage/>/>
         <Route path="*" element=<PageNotFound/>/>
 
         // <Route path="/booklist" element=<BookList/>/>
@@ -29,6 +53,7 @@ const App = () => {
       <ToastContainer />
       </BrowserRouter>
 
+      </ThemeProvider>
     
     
     
