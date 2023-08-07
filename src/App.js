@@ -9,28 +9,10 @@ import Register from './Components/Register';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ThemeProvider } from '@emotion/react';
-import { createTheme } from '@mui/material';
+import { theme } from './theme';
 
 const App = () => {
-  const theme=createTheme({
-    components:{
-      MuiButton:{
-        styleOverrides:{
-          root:{
-            backgroundColor:"#ccc"
-          }
-        },
-      },
-      MuiAppBar:{
-        styleOverrides:{
-          root:{
-            backgroundColor:"#cf4b45"
-          }
-        }
-      }
-    }
-
-  });
+  
 
   return (
     <>
